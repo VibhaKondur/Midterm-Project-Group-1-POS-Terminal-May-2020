@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Midterm_Project_Group_1_POS_Terminal_May_2020</RootNamespace>
+  </PropertyGroup>
+
+</Project>
