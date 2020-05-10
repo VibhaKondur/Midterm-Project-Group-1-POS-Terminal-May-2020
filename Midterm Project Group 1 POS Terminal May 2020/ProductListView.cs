@@ -3,19 +3,25 @@ using System.Collections.Generic;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
 	using System.Collections.Generic;
-	//CLASS DECLARATION
-	class ProductListView
+    using System.Linq;
+    using System.Text.RegularExpressions;
+
+    //CLASS DECLARATION
+    class ProductListView
     {
-        //PROPERTIES
-	    public List<Product> Products { get; set; }
-	    //CLASS CONSTRUCTOR
-	    public ProductListView(List<Product> products)
+		//PROPERTIES
+		public List<Product> Products { get; set; }
+		//CLASS CONSTRUCTOR
+
+		public ProductListView(List<Product> products)
+		{
+			Products = products;
+		}
+		//CLASS METHODS
+
+		public void Display()
 	    {
-		    Products = products;
-	    }
-	    //CLASS METHODS
-	    public void Display()
-	    {
+			
 			Console.WriteLine("Inventory: ");
 		    for (int i = 0; i < Products.Count; i++)
 		    {
@@ -24,7 +30,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 	    }
 	    public int Select()
 	    {
-		    Display();
 		    Console.WriteLine("Which item would you like to know more about?");
 		    if (ValidationLoop("an item by name or by number", Products, out int index))
 		    {
@@ -51,6 +56,27 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				return false;
 			}
 		}
+		public static bool ValidateIntRange(string valueDescription, int range, string input)
+		{
+			if (int.TryParse(input, out int integer))
+			{
+				if (integer >= 1 && integer <= range)
+				{
+					//Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
+					return true;
+				}
+				else
+				{
+					Console.WriteLine("Index out of range exception.");
+					throw new IndexOutOfRangeException();
+				}
+			}
+			else
+			{
+				Console.WriteLine("Format exception.");
+				throw new FormatException();
+			}
+		}
 		public static bool ValidationLoop(string valueDescription, List<Product> list, out int index)
 		{
 			//This validation loop overload is intended for use when a user must select from a numbered list of options. This overload accepts a string parameter "valueDescription" which is concatenated into the user prompt for specificity. This overload accepts a List<> parameter "list" which provides the acceptable range of integers from which the user may choose. This overload returns boolean value "true" if the user input is indeed an integer within the index range of the list, and "false" if not. This overload also returns an int "index", which equals the user input minus 1.
@@ -63,7 +89,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			{
 				Console.WriteLine($"Enter {valueDescription} (#1-{list.Count()}): ");
 				input = Console.ReadLine().Trim();
-				if (ValidateWRegEx(valueDescription, regEx, input))
+				if (ValidateIntRange(valueDescription, list.Count(), input))
 				{
 					index = int.Parse(input) - 1;
 					valid = true;

@@ -32,6 +32,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         }
         public Box Select()
         {
+            Cart myCart = new Cart();
+
             Display();
             if (AskYesOrNo("Would you like to purchase this item?"))
             {
@@ -40,21 +42,23 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 }
                 else
                 {
-                    throw new Exception("Index out of range.");
+                    //throw new Exception("Index out of range.");
                 }
-                string selectionSummary = ($"Would you like to add {quantity} units of {thisProduct.Name} (total price: { quantity * thisProduct.Price}) to the cart ?");
+                string selectionSummary = ($"Would you like to add {quantity + 1} units of {thisProduct.Name} (total price: { (quantity + 1) * thisProduct.Price}) to the cart ?");
                 if (AskYesOrNo(selectionSummary))
                 {
-                    Box Box = new Box(thisProduct, quantity);
-                    return Box;
+                    Box box = new Box(thisProduct, quantity + 1);
+                return box;
                 }
                 else
                 {
                 }
             }
-            return null;
-
+            Box emptyBox = new Box();
+            return emptyBox;
         }
+            
+
         public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
         {
             Regex regEx = new Regex($@"{regExString}");
@@ -113,12 +117,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             bool valid = false;
             string input = null;
             int counter = 0;
-            string regEx = "\\b[1-" + $"{inventory}" + "]\\b";
+           // string regEx = "\\b[1-" + $"{inventory}" + "]\\b";
             while (!valid && counter <= 2)
             {
                 Console.WriteLine($"Enter {valueDescription} (#1-{inventory}): ");
                 input = Console.ReadLine().Trim();
-                if (ValidateWRegEx(valueDescription, regEx, input))
+                if (ValidateIntRange(valueDescription, inventory, input))
                 {
                     index = int.Parse(input) - 1;
                     valid = true;
@@ -132,6 +136,27 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
             index = -1;
             return false;
+        }
+        public static bool ValidateIntRange(string valueDescription, int range, string input)
+        {
+            if (int.TryParse(input, out int integer))
+            {
+                if (integer >= 1 && integer <= range)
+                {
+                    //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
+                    return true;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                    Console.WriteLine("Index out of range exception.");
+                }
+            }
+            else
+            {
+                throw new FormatException();
+                Console.WriteLine("Format exception.");
+            }
         }
 
     }

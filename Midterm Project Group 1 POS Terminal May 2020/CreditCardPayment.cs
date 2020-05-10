@@ -28,6 +28,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
         }
 
+
         //overloaded constructor
         public CreditCardPayment(string creditCard, string visa, string masterCard, string discover, string americanExpress, string creditCardNumber, DateTime expirationDate, int cVV)
         {
@@ -43,47 +44,62 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
         //method asking the user to enter their credit card info to pay
         public static bool PayWithCreditCard()
+
+        public CreditCardPayment(string visa, string masterCard, string discover, string americanExpress, string creditCardNumber, DateTime expirationDate, int cVV) : base(string creditCard)
         {
-            Console.WriteLine($"Enter name listed on Credit Card:  ");
-            string name = Console.ReadLine();
-
-            Console.WriteLine($"Enter credit card number:  ");
-            string creditCardNumber = Console.ReadLine();
-
-            Console.WriteLine($"Enter expiration date in format MM/YYYY:   ");
-            DateTime expirationDate = DateTime.Parse(Console.ReadLine());
-
-            try
-            {
-                if (expirationDate != "MM/YYYY")
-                {
-                    throw new FormatException("Invalid Input. Please input date as format MM/YYYY");
-                }
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            Console.WriteLine($"Enter 3 digit code (CVV) on back of card :   ");
-            int cVV = int.Parse(Console.ReadLine());
-            cVV = 0;
-
-            try
-            {
-                if (cVV != 123)
-                {
-                    throw new FormatException("Invalid CVV. Please input correct CVV");
-                }
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            Payment.Add(name, creditCardNumber, expirationDate, cVV);
-           
+            Visa = visa;
+            MasterCard = masterCard;
+            Discover = discover;
+            AmericanExpress = americanExpress;
+            CreditCardNumber = creditCardNumber;
+            ExpirationDate = expirationDate;
+            CVV = cVV;
         }
+
+
+            public static string PayWithCreditCard(string cardNumber)
+
+            {
+                Console.WriteLine($"Enter name listed on Credit Card:  ");
+                string name = Console.ReadLine();
+
+                Console.WriteLine($"Enter credit card number:  ");
+                string creditCardNumber = Console.ReadLine();
+
+                Console.WriteLine($"Enter expiration date in format MM/YYYY:   ");
+                DateTime expirationDate = DateTime.Parse(Console.ReadLine());
+
+                try
+                {
+                    if (expirationDate != "MM/YYYY")
+                    {
+                        throw new FormatException("Invalid Input. Please input date as format MM/YYYY");
+                    }
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                Console.WriteLine($"Enter 3 digit code (CVV) on back of card :   ");
+                int cVV = int.Parse(Console.ReadLine());
+                cVV = 0;
+
+                try
+                {
+                    if (cVV != 123)
+                    {
+                        throw new FormatException("Invalid CVV. Please input correct CVV");
+                    }
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                Payment.Add(name, creditCardNumber, expirationDate, cVV);
+
+            }
 
         //method - using regex - validating type of credit card used for purchase - Visa, MasterCard, Amex, and Discover 
         public virtual bool DetermineCreditCardType(string creditCardNumber)
@@ -141,5 +157,9 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
             return false;
         }//end IsValidExpiration
+
+           
     }
+
+}
 }
