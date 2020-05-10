@@ -30,7 +30,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         //method asking user which payment method they would like to use
         public static string SelectPaymentMethod()
         {
-            Console.WriteLine("Which payment method would you like to use - Cash, check, or Credit Card?");
+            Console.WriteLine("Which payment method would you like to use - Cash, Check, or Credit Card?");
             string input = Console.ReadLine();
             return input;
         }
