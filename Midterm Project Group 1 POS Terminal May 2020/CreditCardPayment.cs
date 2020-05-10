@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -38,6 +39,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         //    CVV = cVV;
         //}
 
+<<<<<<< HEAD
         //public static string PayWithCreditCard(string cardNumber)
         //{
         //    if (Regex.Match(cardNumber, @"^4[0-9]{12}(?:[0-9]{3})?$").Success)
@@ -59,6 +61,29 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         //    {
         //        return CreditCardPayment.discover;
         //    }
+=======
+        public static string PayWithCreditCard(string cardNumber)
+        {
+            if (Regex.IsMatch(cardNumber, @"^4[0-9]{12}(?:[0-9]{3})?$").visa)
+            {
+                return CreditCardPayment.visa;
+            }
+
+            if (Regex.IsMatch(cardNumber, @"^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$"))
+            {
+                return CreditCardPayment.masterCard;
+            }
+
+            if (Regex.IsMatch(cardNumber, @"^3[47][0-9]{13}$"))
+            {
+                return CreditCardPayment.americanExpress;
+            }
+
+            if (Regex.IsMatch(cardNumber, @"^6(?:011|5[0-9]{2})[0-9]{12}$"))
+            {
+                return CreditCardPayment.discover;
+            }
+>>>>>>> 13f6442357bb78e09994fde5470312f69ad11adc
 
         //    throw new Exception("Unknown card.");
         //}
