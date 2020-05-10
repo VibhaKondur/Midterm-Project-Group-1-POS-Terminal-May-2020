@@ -13,7 +13,15 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             Quantity = quantity;
         }
         //DEFAULT CONSTRUCTOR
-        public Box() {
+        public Box() 
+        {
+
+        }
+        //METHODS
+        public double Price()
+        {
+            double price = Product.Price * Quantity;
+            return price;
         }
     }
 }

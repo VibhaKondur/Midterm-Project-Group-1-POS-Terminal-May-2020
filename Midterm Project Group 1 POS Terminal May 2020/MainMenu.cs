@@ -7,26 +7,26 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
     class MainMenu
     {
-        static void Main(string[] args)
+       public static void NewMethod(string[] args)
         {
             Console.WriteLine("Welcome to our Store");
 
 
 
-            DisplayMenu();
             GetUserInt("What would you like to do next?", 1, 5);
+            DisplayMenu();
 
         }
 
 
         public static int DisplayMenu()
         {
-            string[] menuItems = new string[5] { "Add Item to Cart", "Remove Item from Cart", "Review Cart", "Checkout", "Clear Cart" };
+            string[] menuItems = new string[5] { "View Inventory", "Remove Item from Cart", "Review Cart", "Checkout", "Clear Cart" };
             Console.WriteLine();
 
             for (int i = 0; i < menuItems.Length; i++)
             {
-                Console.WriteLine($"{i + 1} {menuItems[i]}");
+                Console.WriteLine($"{i + 1}  {menuItems[i]}");
             }
             int selection = GetUserInt("", 1, menuItems.Length);
             return selection;
