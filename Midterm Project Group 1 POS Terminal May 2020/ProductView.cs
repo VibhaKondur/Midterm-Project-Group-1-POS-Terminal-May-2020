@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
     using System.Text.RegularExpressions;
@@ -12,65 +12,64 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
     class ProductView
     {
         //PROPERTIES
-	    public Product DisplayProduct { get; set; }
-	    //CONSTRUCTOR
-	    public ProductView(Product displayProduct)
-	    {
-		    DisplayProduct = displayProduct;
-	    }
-	    //CLASS METHODS
-	    public void Display()
-	    {
-		    //PRINT OUT ALL THE PROPERTIES AND VALUES OF PRODUCT
-		    //https://stackoverflow.com/questions/852181/c-printing-all-properties-of-an-object
-		    foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(Product))
-		    {
-			    string propertyName = descriptor.Name;
-			    object value = descriptor.GetValue(Product);
-			    Console.WriteLine($"{propertyName}: {value}");
-		    }
-	    }
-	    public Box Select()
-	    {
-		    Display();
-		    if (AskYesOrNo("Would you like to purchase this item?"))
-		    {
-			    if (ValidationLoop("the quantity you would like to purchase", Product.Inventory, out int quantity))
-			    {
-			    }
-			    else
-			    {
-				    throw new Exception(“Index out of range.”);
-			    }
-			    string selectionSummary = $"Would you like to add { quantity}
-			    units of { Product.Name} (total price: { quantity * Product.Price}) to the cart ?")
-	    if (AskYesOrNo(selectionSummary))
-			    {
-				    Box Box = new Box(Product, quantity);
-				    return Box;
-			    }
-			    else
-			    {
-				    return null;
-			    }
-		    }
+        public Product thisProduct { get; set; }
+        //CONSTRUCTOR
+        public ProductView(Product displayProduct)
+        {
+            thisProduct = displayProduct;
+        }
+        //CLASS METHODS
+        public void Display()
+        {
+            //PRINT OUT ALL THE PROPERTIES AND VALUES OF PRODUCT
+            //https://stackoverflow.com/questions/852181/c-printing-all-properties-of-an-object
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(thisProduct))
+            {
+                string propertyName = descriptor.Name;
+                object value = descriptor.GetValue(thisProduct);
+                Console.WriteLine($"{propertyName}: {value}");
+            }
+        }
+        public Box Select()
+        {
+            Display();
+            if (AskYesOrNo("Would you like to purchase this item?"))
+            {
+                if (ValidationLoop("the quantity you would like to purchase", thisProduct.Inventory, out int quantity))
+                {
+                }
+                else
+                {
+                    throw new Exception("Index out of range.");
+                }
+                string selectionSummary = ($"Would you like to add {quantity} units of {thisProduct.Name} (total price: { quantity * thisProduct.Price}) to the cart ?");
+                if (AskYesOrNo(selectionSummary))
+                {
+                    Box Box = new Box(thisProduct, quantity);
+                    return Box;
+                }
+                else
+                {
+                }
+            }
+            return null;
 
-	    }
-		public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
-		{
-			Regex regEx = new Regex($@"{regExString}");
+        }
+        public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
+        {
+            Regex regEx = new Regex($@"{regExString}");
 
-			if (regEx.IsMatch(input))
-			{
-				//Console.WriteLine($"{input} is a {valueDescription}.");
-				return true;
-			}
-			else
-			{
-				//Console.WriteLine($"{input} is not a {valueDescription}.");
-				return false;
-			}
-		}
+            if (regEx.IsMatch(input))
+            {
+                //Console.WriteLine($"{input} is a {valueDescription}.");
+                return true;
+            }
+            else
+            {
+                //Console.WriteLine($"{input} is not a {valueDescription}.");
+                return false;
+            }
+        }
         public static bool AskYesOrNo(string question)
         {
             bool loop = true;
@@ -107,7 +106,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
             return false;
         }
-        public static bool ValidationLoop(string valueDescription, int Product.Inventory inventory, out int index)
+        public static bool ValidationLoop(string valueDescription, int inventory, out int index)
         {
             //This validation loop overload is intended for use when a user must select from a numbered list of options. This overload accepts a string parameter "valueDescription" which is concatenated into the user prompt for specificity. This overload accepts a List<> parameter "list" which provides the acceptable range of integers from which the user may choose. This overload returns boolean value "true" if the user input is indeed an integer within the index range of the list, and "false" if not. This overload also returns an int "index", which equals the user input minus 1.
             //This validation loop references the method "ValidateWRegEx."
@@ -136,3 +135,4 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         }
 
     }
+}

@@ -11,11 +11,11 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         {
             Console.WriteLine("Welcome to our Store");
 
-           
+
 
             DisplayMenu();
             GetUserInt("What would you like to do next?", 1, 5);
-              
+
         }
 
 
