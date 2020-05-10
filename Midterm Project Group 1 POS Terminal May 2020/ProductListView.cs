@@ -3,44 +3,40 @@ using System.Collections.Generic;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
 	using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
+	using System.Linq;
+	using System.Text.RegularExpressions;
 
-    //CLASS DECLARATION
-    class ProductListView
-    {
+	//CLASS DECLARATION
+	class ProductListView
+	{
 		//PROPERTIES
 		public List<Product> Products { get; set; }
 		//CLASS CONSTRUCTOR
-
 		public ProductListView(List<Product> products)
 		{
 			Products = products;
 		}
 		//CLASS METHODS
-
 		public void Display()
-	    {
-			
+		{
 			Console.WriteLine("Inventory: ");
-		    for (int i = 0; i < Products.Count; i++)
-		    {
-			    Console.WriteLine((i + 1) + ". " +Products[i].Name);
-		    }
-	    }
-	    public int Select()
-	    {
-		    Console.WriteLine("Which item would you like to know more about?");
-		    if (ValidationLoop("an item by name or by number", Products, out int index))
-		    {
-			    return index;
-		    }
-		    else
-		    {
-			    throw new Exception("Formatting error.");
-			    return index;
-		    }
-	    }
+			for (int i = 0; i < Products.Count; i++)
+			{
+				Console.WriteLine((i + 1) + ". " + Products[i].Name);
+			}
+		}
+		public int Select()
+		{
+			Display();
+			if (ValidationLoop("an item by number", Products, out int index))
+			{
+				return index;
+			}
+			else
+			{
+				return -1;
+			}
+		}
 		public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
 		{
 			Regex regEx = new Regex($@"{regExString}");
@@ -67,14 +63,14 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				}
 				else
 				{
+					throw new IndexOutOfRangeException(e);
 					Console.WriteLine("Index out of range exception.");
-					throw new IndexOutOfRangeException();
 				}
 			}
 			else
 			{
-				Console.WriteLine("Format exception.");
 				throw new FormatException();
+				Console.WriteLine("Format exception.");
 			}
 		}
 		public static bool ValidationLoop(string valueDescription, List<Product> list, out int index)
@@ -84,7 +80,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			bool valid = false;
 			string input = null;
 			int counter = 0;
-			string regEx = "\\b[1-" + $"{list.Count()}" + "]\\b";
+			//\b[1-[\d]*\b
+			string regEx = "\\b[1-" + $"[{list.Count()}]*" + "]\\b";
 			while (!valid && counter <= 2)
 			{
 				Console.WriteLine($"Enter {valueDescription} (#1-{list.Count()}): ");

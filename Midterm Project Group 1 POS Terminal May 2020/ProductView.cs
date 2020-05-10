@@ -30,34 +30,40 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 Console.WriteLine($"{propertyName}: {value}");
             }
         }
-        public Box Select()
+        public bool Verify(out int quantity)
         {
-            Cart myCart = new Cart();
-
             Display();
-            if (AskYesOrNo("Would you like to purchase this item?"))
+            if (AskYesOrNo($"Would you like to add {thisProduct.Name}?"))
             {
-                if (ValidationLoop("the quantity you would like to purchase", thisProduct.Inventory, out int quantity))
-                {
-                }
-                else
-                {
-                    //throw new Exception("Index out of range.");
-                }
-                string selectionSummary = ($"Would you like to add {quantity + 1} units of {thisProduct.Name} (total price: { (quantity + 1) * thisProduct.Price}) to the cart ?");
+                quantity = ValidateIntRange($"the quantity of {thisProduct.Name} you would like to add", thisProduct.Inventory);
+                string selectionSummary = ($"Would you like to add {quantity} units of {thisProduct.Name}?");
                 if (AskYesOrNo(selectionSummary))
                 {
-                    Box box = new Box(thisProduct, quantity + 1);
-                return box;
+                    return true;
                 }
                 else
                 {
+                    return false;
                 }
             }
-            Box emptyBox = new Box();
-            return emptyBox;
+            else
+            {
+                quantity = 0;
+                return false;
+            }
         }
-            
+
+        public void OfferToAddToCart(Cart theCart)
+        {
+            if (Verify(out int quantity))
+            {
+                Box boxToCart = new Box(thisProduct, quantity);
+                theCart.AddBox(boxToCart);
+            }
+        }
+
+        //Box box = new Box(thisProduct, quantity);
+                    //return box;
 
         public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
         {
@@ -110,54 +116,33 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
             return false;
         }
-        public static bool ValidationLoop(string valueDescription, int inventory, out int index)
+        public static int ValidateIntRange(string valueDescription, int range)
         {
-            //This validation loop overload is intended for use when a user must select from a numbered list of options. This overload accepts a string parameter "valueDescription" which is concatenated into the user prompt for specificity. This overload accepts a List<> parameter "list" which provides the acceptable range of integers from which the user may choose. This overload returns boolean value "true" if the user input is indeed an integer within the index range of the list, and "false" if not. This overload also returns an int "index", which equals the user input minus 1.
-            //This validation loop references the method "ValidateWRegEx."
             bool valid = false;
-            string input = null;
-            int counter = 0;
-           // string regEx = "\\b[1-" + $"{inventory}" + "]\\b";
-            while (!valid && counter <= 2)
+            while (!valid)
             {
-                Console.WriteLine($"Enter {valueDescription} (#1-{inventory}): ");
-                input = Console.ReadLine().Trim();
-                if (ValidateIntRange(valueDescription, inventory, input))
+                if (int.TryParse(Console.ReadLine().Trim(), out int integer))
                 {
-                    index = int.Parse(input) - 1;
-                    valid = true;
-                    return true;
+                    if (integer >= 0 && integer <= range)
+                    {
+                        //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
+                        int index = integer - 1;
+                        valid = true;
+                        return index;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Input is out of range. Try again.");
+                        valid = false;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine($"Invalid entry. {2 - counter} attempts remaining.");
-                    counter++;
+                    Console.WriteLine("Format exception. Try again.");
+                    valid = false;
                 }
             }
-            index = -1;
-            return false;
+            return -1;
         }
-        public static bool ValidateIntRange(string valueDescription, int range, string input)
-        {
-            if (int.TryParse(input, out int integer))
-            {
-                if (integer >= 1 && integer <= range)
-                {
-                    //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
-                    return true;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException();
-                    Console.WriteLine("Index out of range exception.");
-                }
-            }
-            else
-            {
-                throw new FormatException();
-                Console.WriteLine("Format exception.");
-            }
-        }
-
     }
 }
