@@ -13,23 +13,57 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         public List<Product> ProductDB = new List<Product>();
         public void ProductController()
         {
-            Cart myCart = new Cart();
             FileIO number1 = new FileIO();
-
             ProductDB = number1.ReadFromInventory();
 
-            NewMethod(ProductDB);
-
+            //NewMethod(ProductDB);
+            //int inventorySelect = int.Parse(Console.ReadLine());
             ProductListView PLV = new ProductListView(ProductDB);
+            PLV.Display();
+            PLV.Select();
+            ProductView PV = new ProductView();
+            Cart myCart = new Cart();
+            PV.Verify(out int quantity);
+            PV.OfferToAddToCart(myCart);
+            //Something here
+            int selection2 = MainMenu.DisplayMenu();
 
-            Console.WriteLine();
-            int selection = PLV.Select();
+            //Payment newPayment = new Payment();
 
+<<<<<<< HEAD
             ProductView PV = new ProductView(ProductDB[selection]);
 
             PV.OfferToAddToCart(myCart);
+=======
+            switch (selection2)
+            {
+                case 1: // View Inventory
+                    PLV.Display();
+                    break;
+                case 2: //Remove from cart
+                    myCart.RemoveBox();
+                    break;
+                case 3:// Review
+                    myCart.DisplayCart();
+                    break;
+                case 4:// checkout
+                    double subtotal = myCart.Subtotal();
+                    //newPayment.SelectPaymentMethod();
+                    Payment.SelectPaymentMethod();
+                    break;
+                case 5: // clear cart
+                    myCart.Clear();
+                    break;
+            }
+            //List<Box> newBox = new List<Box>();
+            //Console.WriteLine();
+            //int selection = PLV.Select(); 
 
-            myCart.Display();
+            //ProductView PV = new ProductView(ProductDB[selection]);
+            //PV.OfferToAddToCart(myCart);
+>>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
+
+            //myCart.Display();
             //int cart = myCart.AddBox(Box);
 
 
@@ -39,37 +73,16 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             while (true)
             {
-            int selection2 = MainMenu.DisplayMenu();
-
-                
-
-            //switch (selection2)
-            //{
-            //    case "1": // View Inventory
-            //            NewMethod(ProductDB);
-            //    case "2": //Remove from cart
-            //       // myCart
-            //    case "3":// Review
-
-            //    case "4":// checkout
-            //    case "5": // clear cart
-            //}
+                int selection3 = MainMenu.DisplayMenu();
 
             }
-
-
         }
 
-        public static void NewMethod(List<Product> products)
-        {
-            ProductListView PLV = new ProductListView(products);
-            PLV.Display();
+        //public static void NewMethod(List<Product> products)
+        //{
+        //    ProductListView PLV = new ProductListView(products);
+        //    PLV.Display();
 
-        }
-
-
-
-
-
+        //}
     }
 }

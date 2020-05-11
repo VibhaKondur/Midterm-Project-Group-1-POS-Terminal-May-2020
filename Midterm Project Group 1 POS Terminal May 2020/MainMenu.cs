@@ -9,11 +9,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
     {
        public static void NewMethod(string[] args)
         {
-            Console.WriteLine("Welcome to our Store");
-
-
-
-            GetUserInt("What would you like to do next?", 1, 5);
+            //GetUserInt("What would you like to do next?", 1, 5);
             DisplayMenu();
 
         }

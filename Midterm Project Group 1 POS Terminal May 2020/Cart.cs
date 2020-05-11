@@ -15,14 +15,18 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		//DEFAULT CONSTRUCTOR
 		public Cart() { }
+<<<<<<< HEAD
 		//METHODS	
+=======
+		//METHODS
+>>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
 		List<Box> boxes = new List<Box>();
 		public void AddBox(Box box)
 		{
 			boxes.Add(box);
 			int selection = PLV.Select();
 		}
-		public void Display()
+		public void DisplayCart()
 		{
 			Console.WriteLine("Cart Contents: ");
 			for (int i = 0; i < boxes.Count; i++)
@@ -32,7 +36,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		public int SelectItem(string action)
 		{
-			Display();
+			DisplayCart();
 			Console.WriteLine($"Which cart item would you like to {action}?");
 			if (ValidateIntRange("an item number", Boxes.Count, out int index))
 			{

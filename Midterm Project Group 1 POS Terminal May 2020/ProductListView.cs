@@ -27,9 +27,10 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		public int Select()
 		{
-			Display();
-			if (ValidationLoop("an item by number", Products, out int index))
+			Console.WriteLine("Enter the number of the item you want to buy.");
+			if (ValidateIntRange("an item by number", Products.Count))
 			{
+				int index = 17;
 				return index;
 			}
 			else
@@ -52,9 +53,9 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				return false;
 			}
 		}
-		public static bool ValidateIntRange(string valueDescription, int range, string input)
+		public static bool ValidateIntRange(string valueDescription, int range)
 		{
-			if (int.TryParse(input, out int integer))
+			if (int.TryParse(Console.ReadLine(), out int integer))
 			{
 				if (integer >= 1 && integer <= range)
 				{
@@ -63,14 +64,14 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				}
 				else
 				{
-					throw new IndexOutOfRangeException(e);
-					Console.WriteLine("Index out of range exception.");
+					throw new IndexOutOfRangeException();
+					//Console.WriteLine("Index out of range exception.");
 				}
 			}
 			else
 			{
 				throw new FormatException();
-				Console.WriteLine("Format exception.");
+				//Console.WriteLine("Format exception.");
 			}
 		}
 		public static bool ValidationLoop(string valueDescription, List<Product> list, out int index)
@@ -86,7 +87,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			{
 				Console.WriteLine($"Enter {valueDescription} (#1-{list.Count()}): ");
 				input = Console.ReadLine().Trim();
-				if (ValidateIntRange(valueDescription, list.Count(), input))
+				if (ValidateIntRange(valueDescription, list.Count()))
 				{
 					index = int.Parse(input) - 1;
 					valid = true;

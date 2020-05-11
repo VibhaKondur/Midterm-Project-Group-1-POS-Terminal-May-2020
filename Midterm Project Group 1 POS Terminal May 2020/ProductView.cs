@@ -18,6 +18,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         {
             thisProduct = displayProduct;
         }
+        //DEFAULT CONSTRUCTOR
+        public ProductView() { }
         //CLASS METHODS
         public void Display()
         {
