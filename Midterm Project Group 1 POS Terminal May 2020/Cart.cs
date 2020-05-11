@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
 	class Cart
@@ -15,17 +15,19 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		//DEFAULT CONSTRUCTOR
 		public Cart() { }
-		//METHODS
+		//METHODS	
+		List<Box> boxes = new List<Box>();
 		public void AddBox(Box box)
 		{
-			Boxes.Add(box);
+			boxes.Add(box);
+			int selection = PLV.Select();
 		}
 		public void Display()
 		{
 			Console.WriteLine("Cart Contents: ");
-			for (int i = 0; i < Boxes.Count; i++)
+			for (int i = 0; i < boxes.Count; i++)
 			{
-				Console.WriteLine((i + 1) + ". " + Boxes[i].Product);
+				Console.WriteLine((i + 1) + ". " + boxes[i].Product);
 			}
 		}
 		public int SelectItem(string action)
@@ -57,7 +59,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				Boxes[index].Quantity -= quantityToRemove;
 				Console.WriteLine($"{quantityToRemove} units of {Boxes[index].Product.Name} have been removed from the cart. ");
 			}
-
 		}
 		public double Subtotal()
 		{
@@ -98,7 +99,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
 		{
 			Regex regEx = new Regex($@"{regExString}");
-
 			if (regEx.IsMatch(input))
 			{
 				//Console.WriteLine($"{input} is a {valueDescription}.");
@@ -123,9 +123,9 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			{
 				Console.WriteLine($"Enter {valueDescription} (#1-{list.Count()}): ");
 				input = Console.ReadLine().Trim();
-				if (ValidateIntRange(valueDescription, list.Count(), input))
+				if (ValidateIntRange(valueDescription, list.Count(), out int integer))
 				{
-					index = int.Parse(input) - 1;
+					index = integer - 1;
 					valid = true;
 					return true;
 				}

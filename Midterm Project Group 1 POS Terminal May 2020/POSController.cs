@@ -26,8 +26,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             int selection = PLV.Select();
 
             ProductView PV = new ProductView(ProductDB[selection]);
-         
-            PV.Select();
+
+            PV.OfferToAddToCart(myCart);
 
             myCart.Display();
             //int cart = myCart.AddBox(Box);
