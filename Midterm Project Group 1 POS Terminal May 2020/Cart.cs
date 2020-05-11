@@ -34,6 +34,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
 		public void DisplayCart()
 		{
+			Console.Clear();
 			Console.WriteLine("\nCart Contents: ");
 			for (int i = 0; i < Boxes.Count; i++)
 			{

@@ -15,7 +15,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         {
             FileIO number1 = new FileIO();
             ProductDB = number1.ReadFromInventory();
-
+          
             //NewMethod(ProductDB);
             //int inventorySelect = int.Parse(Console.ReadLine());
             //INSTANTIATE Cart
@@ -35,24 +35,29 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             while (loop)
 
             {
+                
                 int selection2 = MainMenu.DisplayMenu();
                 switch (selection2)
                 {
                     case 1: // View Inventory
+                        Console.Clear();
                         AddItemToCart(PLV, myCart);
                         break;
                     case 2: //Remove from cart
+                        Console.Clear();
                         myCart.RemoveBox();
                         break;
                     case 3:// Review
                         myCart.DisplayCart();
                         break;
                     case 4:// checkout
+                        Console.Clear();
                         double subtotal = myCart.Subtotal();
                         //newPayment.SelectPaymentMethod();
                         Payment.SelectPaymentMethod();
                         break;
                     case 5: // clear cart
+                        Console.Clear();
                         myCart.Clear();
                         break;
                 }
