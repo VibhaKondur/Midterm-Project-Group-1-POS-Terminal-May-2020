@@ -41,8 +41,10 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             Console.WriteLine($"{ChangeReceived = AmountTendered - myCart.Subtotal()}");
             Console.WriteLine($"Enter cash amount to pay: ");
             double amountTendered = double.Parse(Console.ReadLine());
-            ChangeReceived = amountTendered - myCart.Subtotal();
-            Console.WriteLine(ChangeReceived);
+
+
+            //ChangeReceived = amountTendered - myCart.Subtotal();
+            //Console.WriteLine(ChangeReceived);
             // myCart.Subtotal();
             return ChangeReceived;
 

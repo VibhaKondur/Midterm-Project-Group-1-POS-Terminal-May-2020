@@ -19,12 +19,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             ProductListView PLV = new ProductListView(ProductDB);
             //SHOW INVENTORY AND ADD ITEM TO CART
             AddItemToCart(PLV, myCart);
-<<<<<<< HEAD
-=======
+
+
 
             //Payment newPayment = new Payment();
 
->>>>>>> jesse
+
             bool loop = true;
             while (loop)
             {
@@ -48,7 +48,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         double subtotal = myCart.Subtotal();
                         //newPayment.SelectPaymentMethod();
                         Payment.SelectPaymentMethod(myCart);
-
                         break;
                     case 5: // clear cart
                         Console.Clear();
@@ -56,9 +55,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         break;
                 }
             }
-
-
-
 
             MainMenu MM = new MainMenu();
             while (true)
@@ -86,7 +82,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
         myCart.DisplayCart();
 
-        PV.Verify(out int quantity);
+        PV.Verify(out quantity);
         //PUT PRODUCT IN CART
         myCart.Boxes.Add(new Box(PV.DisplayProduct, quantity));
             Console.WriteLine("Successfully added item.");

@@ -52,7 +52,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
                     Cashy.PayWithCash(myCart);
             }
-            else if (input == "Check")
+            else if (input == "check")
             {
                 CheckPayment check = new CheckPayment();
                 return check;

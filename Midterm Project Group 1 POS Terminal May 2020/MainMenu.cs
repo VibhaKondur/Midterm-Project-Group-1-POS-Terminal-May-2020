@@ -11,7 +11,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         {
             //GetUserInt("What would you like to do next?", 1, 5);
             DisplayMenu();
-
         }
 
 
