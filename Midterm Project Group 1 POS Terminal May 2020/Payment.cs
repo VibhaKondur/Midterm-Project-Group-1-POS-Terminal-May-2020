@@ -29,11 +29,10 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
         //method asking user which payment method they would like to use
         //uses while loop and if statements to determine the process to calculate payment
-<<<<<<< HEAD
-        public static string SelectPaymentMethod()
-=======
+
+
         public static Payment SelectPaymentMethod()
->>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
+
         {
             Console.WriteLine("Which payment method will you be using today - Cash, Check, or Credit Card?");
             string input = Console.ReadLine().ToLower();
@@ -46,7 +45,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             if (input == "cash")
             {
-<<<<<<< HEAD
+
                 return PayWithCash();
             }
             else if (input == "Check")
@@ -56,7 +55,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             else
             {
                 return PayWithCreditCard();
-=======
+
                 CashPayment Cashy = new CashPayment();
                 return Cashy;
             }
@@ -69,7 +68,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             {
                 CreditCardPayment card = new CreditCardPayment();
                 return card;
->>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
+
             }
         }
     }

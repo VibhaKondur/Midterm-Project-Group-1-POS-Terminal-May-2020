@@ -21,18 +21,26 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		//METHODS
 >>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
 		List<Box> boxes = new List<Box>();
+<<<<<<< HEAD
 		public void AddBox(Box box)
 		{
 			boxes.Add(box);
 			int selection = PLV.Select();
 		}
+=======
+		//public void AddBox(Product product, int quantity)
+		//{
+		//	Boxes.Add(new Box(product, quantity));
+		//}
+>>>>>>> 3322616eaba79a24c2cf18895b09f198d27c9c4e
 		public void DisplayCart()
 		{
-			Console.WriteLine("Cart Contents: ");
-			for (int i = 0; i < boxes.Count; i++)
+			Console.WriteLine("\nCart Contents: ");
+			for (int i = 0; i < Boxes.Count; i++)
 			{
-				Console.WriteLine((i + 1) + ". " + boxes[i].Product);
+				Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price());
 			}
+            Console.WriteLine($"Subtotal: {Subtotal()}.");
 		}
 		public int SelectItem(string action)
 		{
@@ -40,6 +48,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			Console.WriteLine($"Which cart item would you like to {action}?");
 			if (ValidateIntRange("an item number", Boxes.Count, out int index))
 			{
+				index -= 1;
 				return index;
 			}
 			else
@@ -50,8 +59,10 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		public void RemoveBox()
 		{
+            Console.WriteLine("");
 			int index = SelectItem("remove");
 			Console.WriteLine($"How many {Boxes[index].Product.Name} would you like to remove from the cart?");
+
 			ValidateIntRange("a quantity to remove", Boxes[index].Quantity, out int quantityToRemove);
 			if (quantityToRemove == Boxes[index].Quantity)
 			{
@@ -63,6 +74,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				Boxes[index].Quantity -= quantityToRemove;
 				Console.WriteLine($"{quantityToRemove} units of {Boxes[index].Product.Name} have been removed from the cart. ");
 			}
+			DisplayCart();
 		}
 		public double Subtotal()
 		{
@@ -77,16 +89,17 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		{
 			Boxes.Clear();
 			Console.WriteLine("All items have been removed from the cart.");
+			DisplayCart();
 		}
-		public static bool ValidateIntRange(string valueDescription, int range, out int index)
+		public static bool ValidateIntRange(string valueDescription, int range, out int number)
 		{
 			if (int.TryParse(Console.ReadLine().Trim(), out int integer))
 			{
 				if (integer >= 0 && integer <= range)
 				{
-					//Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
-					index = integer - 1;
-					return true;
+                    //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
+                    number = integer;
+                    return true;
 				}
 				else
 				{

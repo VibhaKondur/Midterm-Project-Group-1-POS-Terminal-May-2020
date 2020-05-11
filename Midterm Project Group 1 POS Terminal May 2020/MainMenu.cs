@@ -17,6 +17,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
         public static int DisplayMenu()
         {
+            Console.WriteLine("\nSelect an action: ");
             string[] menuItems = new string[5] { "View Inventory", "Remove Item from Cart", "Review Cart", "Checkout", "Clear Cart" };
             Console.WriteLine();
 
