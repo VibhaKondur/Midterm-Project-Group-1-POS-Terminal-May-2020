@@ -27,7 +27,17 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			{
 				Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
 			}
-            Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
+            Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}");
+		}
+		public void GetReceipt()
+		{
+			Console.Clear();
+			Console.WriteLine("\nRECEIPT\n========");
+			for (int i = 0; i < Boxes.Count; i++)
+			{
+				Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
+			}
+			Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
 		}
 		public int SelectItem(string action)
 		{

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
@@ -29,40 +30,55 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
         //method asking user which payment method they would like to use
         //uses while loop and if statements to determine the process to calculate payment
+        public static void PrintReceipt(Cart myCart)
+        {
+            myCart.GetReceipt();
+            Console.WriteLine($"Sales Tax: {(myCart.Subtotal() * 1.06).ToString("C", CultureInfo.CurrentCulture)}");
+            CalculateTotal(0.06, myCart).ToString("C", CultureInfo.CurrentCulture);
+        }
 
+        public static double CalculateTotal(double taxRate, Cart myCart)
+        {
+            Console.WriteLine($"Tax rate: {taxRate.ToString("C", CultureInfo.CurrentCulture)}");
+            double total = myCart.Subtotal() * (1 + taxRate);
+            Console.WriteLine($"Total: {total.ToString("C", CultureInfo.CurrentCulture)}");
+            return total;
+        }
 
-        public static Payment SelectPaymentMethod(Cart myCart)
+        public static void SelectPaymentMethod(Cart myCart)
 
         {
-            Console.WriteLine("Which payment method will you be using today - Cash, Check, or Credit Card?");
+            Console.WriteLine("\nWhich payment method will you be using today - Cash, Check, or Credit Card?");
             string input = Console.ReadLine().ToLower();
 
             while (true)
             {
+                if (input != "cash" && input != "credit card" && input != "check")
+                {
+                    Console.WriteLine("Invalid input. Which payment method would you like to use - Cash, Check, or Credit Card?");
+                    //input = Console.ReadLine();
+                }   
 
-            if (input != "cash" && input != "credit card" && input != "check")
-            {
-                Console.WriteLine("Invalid input. Which payment method would you like to use - Cash, Check, or Credit Card?");
-                //input = Console.ReadLine();
-            }   
-
-            if (input == "cash")
-            {
-                CashPayment Cashy = new CashPayment();
-
+                if (input == "cash")
+                {
+                    CashPayment Cashy = new CashPayment();
                     Cashy.PayWithCash(myCart);
-            }
-            else if (input == "Check")
-            {
-                CheckPayment check = new CheckPayment();
-                return check;
-            }
-            else
-            {
-                CreditCardPayment card = new CreditCardPayment();
-                return card;
-
-            }
+                    break;
+                }
+                else if (input == "check")
+                {
+                    CheckPayment check = new CheckPayment();
+                    check.PaywithCheck(myCart);
+                    //return check;
+                    break;
+                }
+                else
+                {
+                    CreditCardPayment card = new CreditCardPayment();
+                    card.PayWithCreditCard(myCart);
+                    //return card;
+                    break;
+                }
             }
         }
         

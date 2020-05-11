@@ -62,7 +62,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				{
 					Console.WriteLine("\nEnter the number of the item you want to buy.");
 					string responseString = Console.ReadLine();
-					responseInt = int.Parse(responseString);
+					int responseInt = int.Parse(responseString);
 					int index = responseInt - 1;
 					Product thisProduct = Products[index];
 					return thisProduct;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -23,11 +24,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         }
 
         //overloaded constructor
-        public CashPayment(double amountOfItemPurchased, double amountTendered, double changeReceived)
+        public CashPayment(double amountOfItemPurchased, double amountTendered, double changeReceived, double cart)
         {
             AmountOfItemPurchased = amountOfItemPurchased;
             AmountTendered = amountTendered;
             ChangeReceived = changeReceived;
+            Cart = cart;
         }
 
         //method to have user pay with cash. 
@@ -38,30 +40,28 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             //1. Prints total
            // Console.WriteLine(myCart);
           
-            Console.WriteLine($"{ChangeReceived = AmountTendered - myCart.Subtotal()}");
+            Console.WriteLine($"Subtotal: {myCart.Subtotal().ToString("C", CultureInfo.CurrentCulture)}");
             Console.WriteLine($"Enter cash amount to pay: ");
             double amountTendered = double.Parse(Console.ReadLine());
             ChangeReceived = amountTendered - myCart.Subtotal();
-            Console.WriteLine(ChangeReceived);
+            Console.WriteLine($"Here's your change: {ChangeReceived}");
             // myCart.Subtotal();
+            //double changeReceived = double.Parse(Console.ReadLine());
             return ChangeReceived;
 
 
             //Enter amount of cash to be tendered
 
-           //
+            //
 
 
-           // Console.WriteLine($"Enter amount of item purchased:  ");
-           //// double amountOfItemPurchased = double.Parse(Console.ReadLine());
+            // Console.WriteLine($"Enter amount of item purchased:  ");
+            //// double amountOfItemPurchased = double.Parse(Console.ReadLine());
 
 
-           // Console.WriteLine($"Here's your change:   ");
-           //// double changeReceived = double.Parse(Console.ReadLine());
+            //changeReceived = amountTendered - amountOfItemPurchased;
 
-           //changeReceived = amountTendered - amountOfItemPurchased;
-
-           // return changeReceived;
+            // return changeReceived;
         }
     }
 }

@@ -52,24 +52,15 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             if (AskYesOrNo($"\nWould you like to add {DisplayProduct.Name}? (y/n)"))
             {
                 Console.WriteLine($"\nHow many {DisplayProduct.Name} would you like to add?");
-
                 bool valid = false;
                 while (!valid)
-
-                quantity = int.Parse(Console.ReadLine());
-                string selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {quantity * DisplayProduct.Price}? (y/n)");
-                if (AskYesOrNo(selectionSummary))
                 {
-                    return true;
-                }
-                else
-
-                {
+                    string selectionSummary;
                     int response = int.Parse(Console.ReadLine());
                     if (response > 0 && response <= DisplayProduct.Inventory)
                     {
                         quantity = response;
-                        string selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {(quantity * DisplayProduct.Price).ToString("C", CultureInfo.CurrentCulture)}?");
+                        selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {(quantity * DisplayProduct.Price).ToString("C", CultureInfo.CurrentCulture)}?");
                         if (AskYesOrNo(selectionSummary))
                         {
                             valid = true;
@@ -92,14 +83,9 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         return false;
                     }
                 }
-                quantity = 0;
-                return false;
             }
-            else
-            {
-                quantity = 0;
-                return false;
-            }
+            quantity = 0;
+            return false;
         }
 
         public Box BoxUpProduct(int quantity)

@@ -40,7 +40,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
 
             //method asking the user to enter their credit card info to pay
-            public static string PayWithCreditCard(string cardNumber)
+            public string PayWithCreditCard(Cart myCart)
             {
                 Console.WriteLine($"Enter name listed on Credit Card:  ");
                 string name = Console.ReadLine();
@@ -53,17 +53,16 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
                 Console.WriteLine($"Enter 3 digit code (CVV) listed on back of card :   ");
                 int cVV = int.Parse(Console.ReadLine());
-                cVV = 0;
+                //cVV = 0;
 
             try
                 {
-
-                    if (expirationDate != "MM/YY")
+                    if (!IsValidExpiration(expirationDate))
                     {
                         //throw new FormatException("Invalid Input. Please input date as format MM/YY");
                         try
                         {
-                            if (expirationDate != "MM/YY")
+                            if (!IsValidExpiration(expirationDate))
                             {
                                 throw new FormatException("Invalid Input. Please input date as format MM/YY");
 
@@ -76,7 +75,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
                         try
                         {
-                            if (cVV != 123)
+                            if (IsValidSecurityCode(cVV))
                             {
                                 throw new FormatException("Invalid CVV. Please input correct CVV");
                             }
