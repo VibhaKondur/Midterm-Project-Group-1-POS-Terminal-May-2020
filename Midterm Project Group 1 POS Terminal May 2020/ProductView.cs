@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text.RegularExpressions;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
@@ -23,26 +24,66 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             //https://stackoverflow.com/questions/852181/c-printing-all-properties-of-an-object
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(DisplayProduct))
             {
-                string propertyName = descriptor.Name;
+                string propertyDescriptor = descriptor.Name;
                 object value = descriptor.GetValue(DisplayProduct);
-                Console.WriteLine($"{propertyName}: {value}");
+                string propertyValue;
+                if(propertyDescriptor == "Price")
+                {
+                    double price = double.Parse(value.ToString());
+                    propertyValue = price.ToString("C", CultureInfo.CurrentCulture);
+                }
+                else
+                {
+                    propertyValue = value.ToString();
+                }
+                //Console.WriteLine($"{propertyName}: {value}");
+                //INDENTATION
+                string column1 = propertyDescriptor + ": ";
+                string column2 = propertyValue;
+                //COLUMN 1
+                Console.Write(column1);
+                //COLUMN 2
+                Console.WriteLine((column2.PadLeft(60 - column1.Length)));
             }
         }
+
         public bool Verify(out int quantity)
         {
             if (AskYesOrNo($"\nWould you like to add {DisplayProduct.Name}?"))
             {
                 Console.WriteLine($"\nHow many {DisplayProduct.Name} would you like to add?");
-                quantity = int.Parse(Console.ReadLine());
-                string selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {quantity * DisplayProduct.Price}?");
-                if (AskYesOrNo(selectionSummary))
+                bool valid = false;
+                while (!valid)
                 {
-                    return true;
+                    int response = int.Parse(Console.ReadLine());
+                    if (response > 0 && response <= DisplayProduct.Inventory)
+                    {
+                        quantity = response;
+                        string selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {(quantity * DisplayProduct.Price).ToString("C", CultureInfo.CurrentCulture)}?");
+                        if (AskYesOrNo(selectionSummary))
+                        {
+                            valid = true;
+                            return true;
+                        }
+                        else
+                        {
+                            valid = true;
+                            return false;
+                        }
+                    }
+                    else if (response > DisplayProduct.Inventory)
+                    {
+                        Console.WriteLine($"{DisplayProduct.Inventory} units of {DisplayProduct.Name} are available. Choose a quantity between 0 and {DisplayProduct.Inventory}");
+                        valid = false;
+                    }
+                    else if (response <= 0)
+                    {
+                        quantity = 0;
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+                quantity = 0;
+                return false;
             }
             else
             {
@@ -79,8 +120,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             {
                 Console.WriteLine(question);
                 string response = Console.ReadLine().ToLower();
-                Regex yesTrue = new Regex(@"\b((y(es)?)|\b(t(rue)?))\b");
-                Regex noFalse = new Regex(@"\b((n(o)?)|(f(alse)?))\b");
+                Regex yesTrue = new Regex(@"\b(y(es)?)\b");
+                Regex noFalse = new Regex(@"\b(n(o)?)|\b");
                 try
                 {
                     if (yesTrue.IsMatch(response))

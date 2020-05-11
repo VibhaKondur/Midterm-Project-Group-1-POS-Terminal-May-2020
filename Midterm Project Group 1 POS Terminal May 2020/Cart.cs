@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
@@ -15,31 +16,16 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		//DEFAULT CONSTRUCTOR
 		public Cart() { }
-
-		//METHODS	
-
 		//METHODS
-
 		List<Box> boxes = new List<Box>();
-
-
-
-
-
-
-
-
-
-
-
 		public void DisplayCart()
 		{
 			Console.WriteLine("\nCart Contents: ");
 			for (int i = 0; i < Boxes.Count; i++)
 			{
-				Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price());
+				Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
 			}
-            Console.WriteLine($"Subtotal: {Subtotal()}.");
+            Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
 		}
 		public int SelectItem(string action)
 		{
@@ -86,31 +72,79 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		public void Clear()
 		{
-			Boxes.Clear();
-			Console.WriteLine("All items have been removed from the cart.");
 			DisplayCart();
+			string quantity;
+            if(AskYesOrNo("Are you sure you want to remove all items from the cart?"))
+            {
+			    Boxes.Clear();
+				quantity = "All";
+            }
+            else
+            {
+				quantity = "No";
+            }
+            Console.WriteLine($"{quantity} items have been removed from the cart.");
+			DisplayCart();
+		}
+		public static bool AskYesOrNo(string question)
+		{
+			bool loop = true;
+			int counter = 0;
+			while (loop && counter < 3)
+			{
+				Console.WriteLine(question);
+				string response = Console.ReadLine().ToLower();
+				Regex yesTrue = new Regex(@"\b(y(es)?)\b");
+				Regex noFalse = new Regex(@"\b(n(o)?)|\b");
+				try
+				{
+					if (yesTrue.IsMatch(response))
+					{
+						loop = false;
+						return true;
+					}
+					if (noFalse.IsMatch(response))
+					{
+						loop = false;
+						return false;
+					}
+					else
+					{
+						Console.WriteLine($"Invalid entry. {2 - counter} attempts remaining.");
+						counter++;
+					}
+				}
+				catch (FormatException e)
+				{
+					Console.WriteLine(e.Message);
+					Console.WriteLine("Response attempts exhausted.");
+				}
+			}
+			return false;
 		}
 		public static bool ValidateIntRange(string valueDescription, int range, out int number)
 		{
-			if (int.TryParse(Console.ReadLine().Trim(), out int integer))
-			{
-				if (integer >= 0 && integer <= range)
-				{
-                    //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
-                    number = integer;
-                    return true;
-				}
-				else
-				{
-					Console.WriteLine("Index out of range exception.");
-					throw new IndexOutOfRangeException();
-				}
-			}
-			else
-			{
-				Console.WriteLine("Format exception.");
-				throw new FormatException();
-			}
+			bool valid = false;
+            while (!valid)
+            {
+			    if (int.TryParse(Console.ReadLine().Trim(), out int integer))
+			    {
+				    if (integer >= 0 && integer <= range)
+				    {
+                        //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
+                        number = integer;
+						valid = true;
+                        return true;
+				    }
+				    else
+				    {
+                        Console.WriteLine($"Choose an integer between 0 and {range}.");
+						valid = false;
+				    }
+			    }
+            }
+			number = -1;
+			return true; 
 		}
 		public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
 		{

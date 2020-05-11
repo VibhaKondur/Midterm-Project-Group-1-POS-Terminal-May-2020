@@ -8,32 +8,19 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
     class POSController
     {
-
-
         public List<Product> ProductDB = new List<Product>();
         public void ProductController()
         {
             FileIO number1 = new FileIO();
             ProductDB = number1.ReadFromInventory();
-
-            //NewMethod(ProductDB);
-            //int inventorySelect = int.Parse(Console.ReadLine());
             //INSTANTIATE Cart
             Cart myCart = new Cart(new List<Box> ());
             //INSTANTIATE ProductListView
             ProductListView PLV = new ProductListView(ProductDB);
-
             //SHOW INVENTORY AND ADD ITEM TO CART
             AddItemToCart(PLV, myCart);
-
-            //Payment newPayment = new Payment();
-
-
-
-
             bool loop = true;
             while (loop)
-
             {
                 int selection2 = MainMenu.DisplayMenu();
                 switch (selection2)
@@ -57,22 +44,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         break;
                 }
             }
-
-
-
-
-
-
-
-
             MainMenu MM = new MainMenu();
-
             while (true)
             {
                 int selection3 = MainMenu.DisplayMenu();
             }
         }
-
         //METHODS
         public static void AddItemToCart(ProductListView PLV, Cart myCart)
         {
@@ -84,11 +61,13 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         PV.Display();
         //VERIFY THAT USER WANTS TO PUT PRODUCT IN CART
         //REQUEST QUANTITY TO PUT IN CART
-        PV.Verify(out int quantity);
-        //PUT PRODUCT IN CART
-        myCart.Boxes.Add(new Box(PV.DisplayProduct, quantity));
-            Console.WriteLine("Successfully added item.");
-            myCart.DisplayCart();
+        if (PV.Verify(out int quantity))
+            {
+                //PUT PRODUCT IN CART
+                myCart.Boxes.Add(new Box(PV.DisplayProduct, quantity));
+                //Console.WriteLine("Successfully added item.");
+            }
+        myCart.DisplayCart();
         }
     }
 }
