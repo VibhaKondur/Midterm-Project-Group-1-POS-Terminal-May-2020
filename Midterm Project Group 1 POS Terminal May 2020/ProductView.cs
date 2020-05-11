@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Text.RegularExpressions;
-
     //CLASS DECLARATION
     class ProductView
     {
         //PROPERTIES
-        public Product thisProduct { get; set; }
+        public Product DisplayProduct { get; set; }
         //CONSTRUCTOR
         public ProductView(Product displayProduct)
         {
-            thisProduct = displayProduct;
+            DisplayProduct = displayProduct;
         }
         //DEFAULT CONSTRUCTOR
         public ProductView() { }
@@ -24,21 +19,22 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         public void Display()
         {
             //PRINT OUT ALL THE PROPERTIES AND VALUES OF PRODUCT
+            Console.WriteLine("");
             //https://stackoverflow.com/questions/852181/c-printing-all-properties-of-an-object
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(thisProduct))
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(DisplayProduct))
             {
                 string propertyName = descriptor.Name;
-                object value = descriptor.GetValue(thisProduct);
+                object value = descriptor.GetValue(DisplayProduct);
                 Console.WriteLine($"{propertyName}: {value}");
             }
         }
         public bool Verify(out int quantity)
         {
-            Display();
-            if (AskYesOrNo($"Would you like to add {thisProduct.Name}?"))
+            if (AskYesOrNo($"\nWould you like to add {DisplayProduct.Name}?"))
             {
-                quantity = ValidateIntRange($"the quantity of {thisProduct.Name} you would like to add", thisProduct.Inventory);
-                string selectionSummary = ($"Would you like to add {quantity} units of {thisProduct.Name}?");
+                Console.WriteLine($"\nHow many {DisplayProduct.Name} would you like to add?");
+                quantity = int.Parse(Console.ReadLine());
+                string selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {quantity * DisplayProduct.Price}?");
                 if (AskYesOrNo(selectionSummary))
                 {
                     return true;
@@ -55,33 +51,26 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
         }
 
+        public Box BoxUpProduct(int quantity)
+        {
+            Box boxToCart = new Box(DisplayProduct, quantity);
+            Console.WriteLine($"{quantity} units of {DisplayProduct.Name} added to box.");
+            return boxToCart;
+        }
+
         public void OfferToAddToCart(Cart theCart)
         {
             if (Verify(out int quantity))
             {
-                Box boxToCart = new Box(thisProduct, quantity);
-                theCart.AddBox(boxToCart);
+                
+                //theCart.AddBox(BoxUpProduct(quantity));
+                Console.WriteLine($"{quantity} units of {DisplayProduct.Name} added to cart.");
             }
         }
 
         //Box box = new Box(thisProduct, quantity);
                     //return box;
 
-        public static bool ValidateWRegEx(string valueDescription, string regExString, string input)
-        {
-            Regex regEx = new Regex($@"{regExString}");
-
-            if (regEx.IsMatch(input))
-            {
-                //Console.WriteLine($"{input} is a {valueDescription}.");
-                return true;
-            }
-            else
-            {
-                //Console.WriteLine($"{input} is not a {valueDescription}.");
-                return false;
-            }
-        }
         public static bool AskYesOrNo(string question)
         {
             bool loop = true;
@@ -117,34 +106,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 }
             }
             return false;
-        }
-        public static int ValidateIntRange(string valueDescription, int range)
-        {
-            bool valid = false;
-            while (!valid)
-            {
-                if (int.TryParse(Console.ReadLine().Trim(), out int integer))
-                {
-                    if (integer >= 0 && integer <= range)
-                    {
-                        //Console.WriteLine($"{input} is an integer within the range of 1-{range}.");
-                        int index = integer - 1;
-                        valid = true;
-                        return index;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Input is out of range. Try again.");
-                        valid = false;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Format exception. Try again.");
-                    valid = false;
-                }
-            }
-            return -1;
         }
     }
 }
