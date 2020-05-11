@@ -45,17 +45,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             if (input == "cash")
             {
-
-                return PayWithCash();
-            }
-            else if (input == "Check")
-            {
-                return PayWithCheck();
-            }
-            else
-            {
-                return PayWithCreditCard();
-
                 CashPayment Cashy = new CashPayment();
                 return Cashy;
             }

@@ -15,24 +15,23 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		//DEFAULT CONSTRUCTOR
 		public Cart() { }
-<<<<<<< HEAD
+
 		//METHODS	
-=======
+
 		//METHODS
->>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
+
 		List<Box> boxes = new List<Box>();
-<<<<<<< HEAD
-		public void AddBox(Box box)
-		{
-			boxes.Add(box);
-			int selection = PLV.Select();
-		}
-=======
-		//public void AddBox(Product product, int quantity)
-		//{
-		//	Boxes.Add(new Box(product, quantity));
-		//}
->>>>>>> 3322616eaba79a24c2cf18895b09f198d27c9c4e
+
+
+
+
+
+
+
+
+
+
+
 		public void DisplayCart()
 		{
 			Console.WriteLine("\nCart Contents: ");

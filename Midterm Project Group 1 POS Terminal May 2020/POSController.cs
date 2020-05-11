@@ -28,17 +28,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             //Payment newPayment = new Payment();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ProductView PV = new ProductView(ProductDB[selection]);
 
-            PV.OfferToAddToCart(myCart);
-=======
-            switch (selection2)
-=======
+
+
             bool loop = true;
             while (loop)
->>>>>>> 3322616eaba79a24c2cf18895b09f198d27c9c4e
+
             {
                 int selection2 = MainMenu.DisplayMenu();
                 switch (selection2)
@@ -63,20 +58,13 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 }
             }
 
-            //Console.WriteLine();
-            //int selection = PLV.Select(); 
-
-<<<<<<< HEAD
-            //ProductView PV = new ProductView(ProductDB[selection]);
-            //PV.OfferToAddToCart(myCart);
->>>>>>> 437b34769c3fbced979dabce05eb2ab0f13e72b3
-
-            //myCart.Display();
-            //int cart = myCart.AddBox(Box);
 
 
-=======
->>>>>>> 3322616eaba79a24c2cf18895b09f198d27c9c4e
+
+
+
+
+
             MainMenu MM = new MainMenu();
 
             while (true)
