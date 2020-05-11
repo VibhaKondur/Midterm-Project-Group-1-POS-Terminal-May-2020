@@ -49,11 +49,21 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
         public bool Verify(out int quantity)
         {
-            if (AskYesOrNo($"\nWould you like to add {DisplayProduct.Name}?"))
+            if (AskYesOrNo($"\nWould you like to add {DisplayProduct.Name}? (y/n)"))
             {
                 Console.WriteLine($"\nHow many {DisplayProduct.Name} would you like to add?");
+
                 bool valid = false;
                 while (!valid)
+
+                quantity = int.Parse(Console.ReadLine());
+                string selectionSummary = ($"\nAre you sure you want to add {quantity} units of {DisplayProduct.Name} to the cart for {quantity * DisplayProduct.Price}? (y/n)");
+                if (AskYesOrNo(selectionSummary))
+                {
+                    return true;
+                }
+                else
+
                 {
                     int response = int.Parse(Console.ReadLine());
                     if (response > 0 && response <= DisplayProduct.Inventory)

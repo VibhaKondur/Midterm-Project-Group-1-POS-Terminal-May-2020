@@ -18,6 +18,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		public Cart() { }
 		//METHODS
 		List<Box> boxes = new List<Box>();
+
 		public void DisplayCart()
 		{
 			Console.Clear();
@@ -42,6 +43,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 				return -1;
 				throw new Exception("Formatting error.");
 			}
+
+			
 		}
 		public void RemoveBox()
 		{

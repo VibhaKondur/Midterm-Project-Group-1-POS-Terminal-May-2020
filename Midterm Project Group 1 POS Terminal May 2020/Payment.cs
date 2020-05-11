@@ -31,22 +31,26 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         //uses while loop and if statements to determine the process to calculate payment
 
 
-        public static Payment SelectPaymentMethod()
+        public static Payment SelectPaymentMethod(Cart myCart)
 
         {
             Console.WriteLine("Which payment method will you be using today - Cash, Check, or Credit Card?");
             string input = Console.ReadLine().ToLower();
 
-            while (input != "cash" && input != "credit card" && input != "check")
+            while (true)
+            {
+
+            if (input != "cash" && input != "credit card" && input != "check")
             {
                 Console.WriteLine("Invalid input. Which payment method would you like to use - Cash, Check, or Credit Card?");
-                input = Console.ReadLine();
-            }
+                //input = Console.ReadLine();
+            }   
 
             if (input == "cash")
             {
                 CashPayment Cashy = new CashPayment();
-                return Cashy;
+
+                    Cashy.PayWithCash(myCart);
             }
             else if (input == "Check")
             {
@@ -59,6 +63,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 return card;
 
             }
+            }
         }
+        
     }
 }
