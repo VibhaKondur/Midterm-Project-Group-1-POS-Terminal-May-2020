@@ -51,7 +51,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 Console.WriteLine($"Enter expiration date in format MM/YY:   ");
                 string expirationDate = Console.ReadLine();
 
-                Console.WriteLine($"Enter 3 digit code (CVV) on back of card :   ");
+                Console.WriteLine($"Enter 3 digit code (CVV) listed on back of card :   ");
                 int cVV = int.Parse(Console.ReadLine());
                 cVV = 0;
 
@@ -119,14 +119,14 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             if (Regex.IsMatch(creditCardNumber, @"^3[47][0-9]{13}$"))
             {
 
-                Brand = "Discover";
+                Brand = "American Express";
             }
 
             if (Regex.IsMatch(creditCardNumber, @"^6(?:011|5[0-9]{2})[0-9]{12}$"))
             {
 
 
-                Brand = "American Express";
+                Brand = "Discover";
 
             }
 

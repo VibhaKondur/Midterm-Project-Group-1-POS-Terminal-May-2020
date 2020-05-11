@@ -26,11 +26,23 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		{
             //SELECT AN ITEM FOR PURCHASE
 			Console.WriteLine("\nEnter the number of the item you want to buy.");
-			string responseString = Console.ReadLine();
-			int responseInt = int.Parse(responseString);
-			int index = responseInt - 1;
-			Product thisProduct = Products[index];
-			return thisProduct;
+			
+			
+			while(true)
+			{
+				string responseString = Console.ReadLine();
+				int responseInt = int.Parse(responseString);
+				if (responseInt <= 1 && responseInt >= Products.Count)
+				{
+					Console.WriteLine("Invalid number. Please enter the number of the item you want to buy.");
+				}
+
+				int index = responseInt - 1;
+				Product thisProduct = Products[index];
+				return thisProduct;
+
+			}
+			
 		}
 	}
 }

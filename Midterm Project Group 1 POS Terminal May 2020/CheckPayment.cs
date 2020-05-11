@@ -10,7 +10,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
          //properties
         public string Name { get; set; }
 
-
         public double CheckAmount { get; set; }
 
         public int CheckNumber { get; set; }
