@@ -14,16 +14,10 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             POSController controller = new POSController();
             Cart myCart = new Cart();
-            myCart.Display();
-
             controller.ProductController();
+            
+
 
         }
-        
-       
-            
-
-            
-
     }
 }
