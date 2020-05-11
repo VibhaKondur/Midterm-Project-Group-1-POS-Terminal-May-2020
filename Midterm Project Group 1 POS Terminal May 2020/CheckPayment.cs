@@ -31,7 +31,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         }
 
         //method to have user pay with check
-        public virtual double PaywithCheck()
+        public double PaywithCheck()
         {
 
             Console.WriteLine($"Enter name on check: ");

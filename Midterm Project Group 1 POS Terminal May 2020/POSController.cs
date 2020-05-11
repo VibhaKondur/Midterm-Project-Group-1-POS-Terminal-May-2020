@@ -28,9 +28,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             //Payment newPayment = new Payment();
 
-
-
-
             bool loop = true;
             while (loop)
 
@@ -50,20 +47,14 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                     case 4:// checkout
                         double subtotal = myCart.Subtotal();
                         //newPayment.SelectPaymentMethod();
-                        Payment.SelectPaymentMethod();
+                        Payment.SelectPaymentMethod(myCart);
+
                         break;
                     case 5: // clear cart
                         myCart.Clear();
                         break;
                 }
             }
-
-
-
-
-
-
-
 
             MainMenu MM = new MainMenu();
 
@@ -89,6 +80,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         myCart.Boxes.Add(new Box(PV.DisplayProduct, quantity));
             Console.WriteLine("Successfully added item.");
             myCart.DisplayCart();
+
         }
     }
 }
