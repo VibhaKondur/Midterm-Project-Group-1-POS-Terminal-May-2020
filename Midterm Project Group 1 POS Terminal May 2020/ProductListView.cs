@@ -39,13 +39,49 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		}
 		public Product Select()
 		{
-            //SELECT AN ITEM FOR PURCHASE
-			Console.WriteLine("\nEnter the number of the item you want to buy.");
-			string responseString = Console.ReadLine();
-			int responseInt = int.Parse(responseString);
-			int index = responseInt - 1;
-			Product thisProduct = Products[index];
-			return thisProduct;
+				
+			//while(true)
+			//{
+			//	string responseString = Console.ReadLine();
+			//	int responseInt = int.Parse(responseString);
+			//	if (responseInt <= 1 && responseInt >= Products.Count)
+			//	{
+			//		Console.WriteLine("Invalid number. Please enter the number of the item you want to buy.");
+			//	}
+
+			//	int index = responseInt - 1;
+			//	Product thisProduct = Products[index];
+			//	return thisProduct;
+
+			//int responseInt = -1;
+			
+			//SELECT AN ITEM FOR PURCHASE
+			while (true)
+			{
+				try
+				{
+					Console.WriteLine("\nEnter the number of the item you want to buy.");
+					string responseString = Console.ReadLine();
+					responseInt = int.Parse(responseString);
+					int index = responseInt - 1;
+					Product thisProduct = Products[index];
+					return thisProduct;
+				}
+				catch (ArgumentOutOfRangeException)
+				{
+					Console.WriteLine("I'm sorry, that does not appear to be a product in our inventory. ");
+				}
+				catch (IndexOutOfRangeException)
+				{
+					Console.WriteLine("I'm sorry, that does not appear to be a product in our inventory. ");
+				}
+				catch (FormatException)
+				{
+					Console.WriteLine("Invalid input. Please enter a number.");
+				}
+
+			}
+			
 		}
 	}
 }
