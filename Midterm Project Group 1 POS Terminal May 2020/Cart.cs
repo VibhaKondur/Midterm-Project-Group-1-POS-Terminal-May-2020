@@ -202,5 +202,26 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			index = -1;
 			return false;
 		}
+
+		public List<Product> Checkout(List<Product> inventory)
+		{
+			//Takes in a list of product that's our initial inventory,
+			//For each item in the cart, 
+			//iterates through inventory to find name match
+			//adjusts the inventory by the amount in the cart
+			//When done, clears all items in the boxes and returns inventory
+			foreach (Box purchasedItem in Boxes)
+			{
+				foreach (Product item in inventory)
+				{
+					if (purchasedItem.Product.Name == item.Name)
+					{
+						item.Inventory = item.Inventory - purchasedItem.Quantity;
+					}
+				}
+			}
+			Boxes.Clear();
+			return inventory;
+		}
 	}
 }
