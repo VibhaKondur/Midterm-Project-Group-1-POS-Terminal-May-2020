@@ -51,11 +51,11 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         Console.Clear();
                         myCart.Clear();
                         break;
+                    case 6: //Quit
+                        Environment.Exit(0);
+                        break;
                 }
             }
-
-
-
 
             MainMenu MM = new MainMenu();
             while (true)
