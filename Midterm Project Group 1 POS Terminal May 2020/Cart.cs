@@ -30,7 +30,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}");
 		}
         //GETRECEIPT DEFAULT
-        public void GetReceipt()
+        public string GetReceipt()
         {
             Console.Clear();
             Console.WriteLine("\nRECEIPT\n========");
@@ -38,49 +38,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             {
                 Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
             }
-            Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
-        }
-        //      //GETRECEIPT FOR CASH
-        //public void GetReceipt(CashPayment payment, double cashTendered)
-        //{
-        //	Console.Clear();
-        //	Console.WriteLine("\nRECEIPT\n========");
-        //	for (int i = 0; i < Boxes.Count; i++)
-        //	{
-        //		Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
-        //	}
-        //	Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
-        //          Console.WriteLine($"Amount tendered: {cashTendered}");
-        //}
-        //      //GETRECEIPT FOR CREDIT CARD    
-        //      public void GetReceipt(CreditCardPayment payment)
-        //{
-        //	Console.Clear();
-        //	Console.WriteLine("\nRECEIPT\n========");
-        //	for (int i = 0; i < Boxes.Count; i++)
-        //	{
-        //		Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
-        //	}
-        //	Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
-        //          Console.WriteLine($"Name: {payment.Name}");
-        //          Console.WriteLine($"Credit Card Number: {payment.CreditCardNumber}");
-        //          Console.WriteLine($"Expiration Date: {payment.ExpirationDate}");
-        //          Console.WriteLine($"Brand: {payment.Brand}");
-        //}
-        ////GETRECEIPT FOR CHECK   
-        //public void GetReceipt(CheckPayment payment)
-        //{
-        //	Console.Clear();
-        //	Console.WriteLine("\nRECEIPT\n========");
-        //	for (int i = 0; i < Boxes.Count; i++)
-        //	{
-        //		Console.WriteLine((i + 1) + ". " + Boxes[i].Product.Name + " (" + Boxes[i].Quantity + ") " + Boxes[i].Price().ToString("C", CultureInfo.CurrentCulture));
-        //	}
-        //	Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}.");
-        //	Console.WriteLine($"Name: {payment.Name}");
-        //          Console.WriteLine($"Check amount: {payment.CheckAmount}");
-        //          Console.WriteLine($"Check number: {payment.CheckNumber}");
-        //}
+            //Console.WriteLine($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}");
+			string receipt = ($"Subtotal: {Subtotal().ToString("C", CultureInfo.CurrentCulture)}");
+			return receipt;
+
+		}
+        
         public int SelectItem(string action)
 		{
 			DisplayCart();
