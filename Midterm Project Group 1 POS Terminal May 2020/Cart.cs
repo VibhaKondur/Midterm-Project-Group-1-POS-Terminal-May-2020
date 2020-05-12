@@ -254,11 +254,15 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
 			foreach (Box purchasedItem in Boxes)
 			{
-				foreach (Product item in inventory)
+				for (int i = 0; i <inventory.Count; i++)
 				{
-					if (purchasedItem.Product.Name == item.Name)
+					if (purchasedItem.Product.Name == inventory[i].Name)
 					{
-						item.Inventory = item.Inventory - purchasedItem.Quantity;
+						inventory[i].Inventory = inventory[i].Inventory - purchasedItem.Quantity;
+						if (inventory[i].Inventory == 0)
+						{
+							inventory.RemoveAt(i);
+						}
 					}
 				}
 			}
