@@ -14,11 +14,11 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
 
         public static string PaymentMethod { get; set; }
-        public static string CreditCard { get; set; }
+        //public static string CreditCard { get; set; }
 
-        public static string Check { get; set; }
+        //public static string Check { get; set; }
 
-        public static string Cash { get; set; }
+        //public static string Cash { get; set; }
 
 
         //default constructor
@@ -38,7 +38,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         public static void PrintReceipt(Cart myCart)
         {
             myCart.GetReceipt();
-            Console.WriteLine($"Sales Tax: {(myCart.Subtotal() * 1.06).ToString("P", CultureInfo.InvariantCulture)}");
+            Console.WriteLine($"Sales Tax: {(myCart.Subtotal() * 0.06).ToString("C", CultureInfo.CurrentCulture)}");
             CalculateTotal(0.06, myCart).ToString("C", CultureInfo.CurrentCulture);
            
             //Console.WriteLine($"{PaymentMethod}, {Total}, {CashPayment. AmountTendered}, {ChangeReceived} ");
