@@ -52,7 +52,10 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         Console.Clear();
                         myCart.Clear();
                         break;
-                    case 6: //Quit
+                    case 6: //Add new product to inventory
+                        ProductDB = Product.AddToInventory(ProductDB);
+                        break;
+                    case 7: //Quit
                         Environment.Exit(0);
                         break;
                 }

@@ -262,6 +262,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 					}
 				}
 			}
+			FileIO write = new FileIO();
+			write.WriteToInventory(inventory);
 			Boxes.Clear();
 			return inventory;
 		}
