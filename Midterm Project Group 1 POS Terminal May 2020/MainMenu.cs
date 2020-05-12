@@ -9,7 +9,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
     {
        public static void NewMethod(string[] args)
         {
-            //GetUserInt("What would you like to do next?", 1, 5);
+            
             DisplayMenu();
 
         }
@@ -18,7 +18,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         public static int DisplayMenu()
         {
             Console.WriteLine("\nSelect an action: ");
-            string[] menuItems = new string[5] { "View Inventory", "Remove Item from Cart", "Review Cart", "Checkout", "Clear Cart" };
+            string[] menuItems = new string[6] { "View Inventory", "Remove Item from Cart", "Review Cart", "Checkout", "Clear Cart", "Quit" };
             Console.WriteLine();
 
             for (int i = 0; i < menuItems.Length; i++)
@@ -54,24 +54,5 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                     Console.WriteLine("I'm sorry, your input wasn't valid. Please try again.");
             }
         }
-
-        //public static double DisplayTotal()
-        //{
-        //    double price = 
-        //    int quantitiy =
-
-
-
-        //    return price * quantitiy;
-        //}
-
-
-
-
-
-
-
-
-
     }
 }   
