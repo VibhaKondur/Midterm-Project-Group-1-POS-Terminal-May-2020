@@ -77,12 +77,19 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                     CashPayment Cashy = new CashPayment();
                     double taxRate = .06;
                     Cashy.PayWithCash(myCart, taxRate);
+                    ReceiptCash receipt = new ReceiptCash(Cashy, myCart);
+                    Console.WriteLine("About to print receipt.");
+                    receipt.PrintReceipt();
+                    //ReceiptCash receipt = new ReceiptCash(Cashy);
+                    //receipt.PrintReceipt(myCart);
                     break;
                 }
                 else if (input == "check")
                 {
                     CheckPayment check = new CheckPayment();
                     check.PayWithCheck(myCart);
+                    ReceiptCheck receipt = new ReceiptCheck(check, myCart);
+                    receipt.PrintReceipt();
                     //return check;
                     break;
                 }
@@ -90,6 +97,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 {
                     CreditCardPayment card = new CreditCardPayment();
                     card.PayWithCreditCard(myCart);
+                    ReceiptCreditCard receipt = new ReceiptCreditCard(card, myCart);
+                    receipt.PrintReceipt();
                     //return card;
                     break;
                 }

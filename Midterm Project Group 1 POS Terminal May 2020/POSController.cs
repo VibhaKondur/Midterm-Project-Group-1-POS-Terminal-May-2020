@@ -44,7 +44,6 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                         myCart.DisplayCart();
                         Payment.CalculateTotal(0.06, myCart);
                         Payment.SelectPaymentMethod(myCart);
-                        Payment.PrintReceipt(myCart);
                         ProductDB = myCart.Checkout(ProductDB); //Added by Roy to adjust inv and clear cart
                         Console.WriteLine("Thanks for shopping at TramLaw. Please come again.");
                         break;

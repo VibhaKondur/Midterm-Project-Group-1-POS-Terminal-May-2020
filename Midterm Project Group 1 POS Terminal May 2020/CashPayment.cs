@@ -40,6 +40,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             double amountTendered = double.Parse(Console.ReadLine());
             ChangeReceived = amountTendered - total;
             Console.WriteLine($"Here's your change: {ChangeReceived.ToString("C", CultureInfo.CurrentCulture)}");
+            AmountTendered = amountTendered;
             // myCart.Subtotal();
             //double changeReceived = double.Parse(Console.ReadLine());
             return ChangeReceived;

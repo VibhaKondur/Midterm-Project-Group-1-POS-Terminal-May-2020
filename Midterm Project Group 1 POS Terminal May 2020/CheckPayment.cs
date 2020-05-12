@@ -36,6 +36,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             Console.WriteLine($"Enter name on check: ");
             string name = Console.ReadLine();
+            Name = name;
             
             //Console.WriteLine($"Amount owed: {cart.Subtotal()}.");
             //double checkAmount = double.Parse(Console.ReadLine());
@@ -50,7 +51,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             {
                 Console.WriteLine("That's not a valid check number.");
             }
-
+            CheckNumber = checkNumber;
             Console.WriteLine("The check cleared.");
             //return checkNumber;
         }
