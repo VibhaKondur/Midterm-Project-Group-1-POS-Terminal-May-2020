@@ -9,7 +9,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to our Store");
+            Console.WriteLine("Welcome to our TramLaw");
             Console.WriteLine();
 
             POSController controller = new POSController();
