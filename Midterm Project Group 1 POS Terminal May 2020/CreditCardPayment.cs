@@ -58,7 +58,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 
             if (DetermineCreditCardType(creditCardNumber))
             {
-                throw new FormatException("Invalid credit card number. Please put in a valid credit card number.")
+                throw new FormatException("Invalid credit card number. Please put in a valid credit card number.");
             }
             else if (!IsValidExpiration(expirationDate))
             {
@@ -74,41 +74,12 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             }
 
 
-            if (!IsValidExpiration(expirationDate))
-            {
-                //throw new FormatException("Invalid Input. Please input date as format MM/YY");
-                try
-                {
-                    if (!IsValidExpiration(expirationDate))
-                    {
-                        throw new FormatException("Invalid Input. Please input date as format MM/YY");
 
-                    }
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-                try
-                {
-                    if (IsValidSecurityCode(cVV))
-                    {
-                        throw new FormatException("Invalid CVV. Please input correct CVV");
-                    }
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+            
+            string creditCardResult = name + creditCardNumber + expirationDate.ToString() + cVV;
+                return creditCardResult;
 
             }
-
-
-            string creditCardResult = name + creditCardNumber + expirationDate.ToString() + cVV;
-            return creditCardResult;
-
-        }
         //method - using regex - validating type of credit card used for purchase - Visa, MasterCard, Amex, and Discover
 
         public virtual bool DetermineCreditCardType(string creditCardNumber)

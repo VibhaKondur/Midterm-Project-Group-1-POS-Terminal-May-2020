@@ -7,16 +7,28 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
     abstract class Payment
     {
         //properties
+
         public string CreditCard { get; set; }
         public string Check { get; set; }
         public string Cash { get; set; }
+
+
+        public static string PaymentMethod { get; set; }
+        public static string CreditCard { get; set; }
+
+        public static string Check { get; set; }
+
+        public static string Cash { get; set; }
+
+
         //default constructor
         public Payment()
         {
         }
         //overloaded constructor
-        public Payment(string creditCard, string check, string cash)
+        public Payment(string paymentMethod, string creditCard, string check, string cash)
         {
+            PaymentMethod = paymentMethod;
             CreditCard = creditCard;
             Check = check;
             Cash = cash;
@@ -28,12 +40,25 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
             myCart.GetReceipt();
             Console.WriteLine($"Sales Tax: {(myCart.Subtotal() * 1.06).ToString("P", CultureInfo.InvariantCulture)}");
             CalculateTotal(0.06, myCart).ToString("C", CultureInfo.CurrentCulture);
+           
+            //Console.WriteLine($"{PaymentMethod}, {Total}, {CashPayment. AmountTendered}, {ChangeReceived} ");
+
+            //string[] paymentType = { "Check", "Cash", "Credit Card" };
+            //Console.WriteLine($"{paymentType}");
+            //Console.WriteLine($"{);
+            //Console.WriteLine($"Payment Method: {);
         }
         public static double CalculateTotal(double taxRate, Cart myCart)
         {
             Console.WriteLine($"Tax rate: {taxRate.ToString("P", CultureInfo.InvariantCulture)}");
             double total = myCart.Subtotal() * (1 + taxRate);
             Console.WriteLine($"Total: {total.ToString("C", CultureInfo.CurrentCulture)}");
+            //string cash = "";
+            //string creditCard = "";
+            //string check = "";
+          
+           // double amountTendered = double.Parse(Console.ReadLine());
+
             return total;
         }
         public static void SelectPaymentMethod(Cart myCart)
@@ -50,13 +75,14 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 if (input == "cash")
                 {
                     CashPayment Cashy = new CashPayment();
-                    Cashy.PayWithCash(myCart);
+                    double taxRate = .06;
+                    Cashy.PayWithCash(myCart, taxRate);
                     break;
                 }
                 else if (input == "check")
                 {
                     CheckPayment check = new CheckPayment();
-                    check.PaywithCheck(myCart);
+                    check.PayWithCheck(myCart);
                     //return check;
                     break;
                 }
@@ -69,5 +95,14 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 }
             }
         }
+
+
+       //// public static void PrintPaymentMethod()
+       // {
+       //     Console.WriteLine(Payment.Cash);
+            
+       // }
+        
+
     }
 }

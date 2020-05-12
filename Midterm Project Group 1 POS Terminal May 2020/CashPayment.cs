@@ -26,15 +26,20 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         }
         //method to have user pay with cash.
         //will return a double which is the change the user will get back from the purchase
-        public double PayWithCash(Cart myCart)
+        public double PayWithCash(Cart myCart, double taxRate)
         {
             //1. Prints total
             // Console.WriteLine(myCart);
+
             Console.WriteLine($"Subtotal: {myCart.Subtotal().ToString("C", CultureInfo.CurrentCulture)}");
+
+            double total = myCart.Subtotal() * (1 + taxRate);
+            Console.WriteLine($"Total: {total.ToString("C", CultureInfo.CurrentCulture)}");
+
             Console.WriteLine($"Enter cash amount to pay: ");
             double amountTendered = double.Parse(Console.ReadLine());
-            ChangeReceived = amountTendered - myCart.Subtotal();
-            Console.WriteLine($"Here's your change: {ChangeReceived}");
+            ChangeReceived = amountTendered - total;
+            Console.WriteLine($"Here's your change: {ChangeReceived.ToString("C", CultureInfo.CurrentCulture)}");
             // myCart.Subtotal();
             //double changeReceived = double.Parse(Console.ReadLine());
             return ChangeReceived;
