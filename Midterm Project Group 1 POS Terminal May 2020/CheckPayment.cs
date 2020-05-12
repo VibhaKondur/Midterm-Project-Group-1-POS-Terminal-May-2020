@@ -31,7 +31,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
         }
 
         //method to have user pay with check
-        public void PaywithCheck(Cart cart)
+        public void PayWithCheck(Cart cart)
         {
 
             Console.WriteLine($"Enter name on check: ");

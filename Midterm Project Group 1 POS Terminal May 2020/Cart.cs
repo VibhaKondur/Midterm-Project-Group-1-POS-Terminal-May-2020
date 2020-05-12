@@ -88,7 +88,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 		{
 			DisplayCart();
 			string quantity;
-            if(AskYesOrNo("Are you sure you want to remove all items from the cart?"))
+            if(AskYesOrNo("Are you sure you want to remove all items from the cart? (y/n)"))
             {
 			    Boxes.Clear();
 				quantity = "All";

@@ -55,9 +55,11 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 int cVV = int.Parse(Console.ReadLine());
                 //cVV = 0;
 
+                
+
             try
                 {
-                    if (!IsValidExpiration(expirationDate))
+                if (!IsValidExpiration(expirationDate))
                     {
                         //throw new FormatException("Invalid Input. Please input date as format MM/YY");
                         try
