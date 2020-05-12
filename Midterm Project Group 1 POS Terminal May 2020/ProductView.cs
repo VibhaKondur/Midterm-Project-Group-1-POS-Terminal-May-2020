@@ -28,7 +28,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 string propertyDescriptor = descriptor.Name;
                 object value = descriptor.GetValue(DisplayProduct);
                 string propertyValue;
-                if (value.ToString().Length <= 50)
+                if (value.ToString().Length <= 25)
                 {
                     if (propertyDescriptor == "Price")
                     {
@@ -45,7 +45,7 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                     //COLUMN 1
                     Console.Write(column1);
                     //COLUMN 2
-                    Console.WriteLine((column2.PadLeft(30 - column1.Length)));
+                    Console.WriteLine((column2.PadLeft(50 - column1.Length)));
                 }
             }
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(DisplayProduct))
