@@ -15,8 +15,8 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
 			Products = products;
 		}
 		//CLASS METHODS
-		public void Display()
         //DISPLAY ALL INVENTORY ITEMS IN A NUMBERED LIST.
+		public void Display()
 		{
 			Console.WriteLine("Inventory: ");
 			for (int i = 0; i < Products.Count; i++)
@@ -36,31 +36,16 @@ namespace Midterm_Project_Group_1_POS_Terminal_May_2020
                 //COLUMN 3
 				Console.WriteLine(column3.PadLeft(60 - column2.Length - column1.Length));
 			}
+            Console.WriteLine("");
 		}
+		//SELECT AN ITEM FOR PURCHASE
 		public Product Select()
 		{
-				
-			//while(true)
-			//{
-			//	string responseString = Console.ReadLine();
-			//	int responseInt = int.Parse(responseString);
-			//	if (responseInt <= 1 && responseInt >= Products.Count)
-			//	{
-			//		Console.WriteLine("Invalid number. Please enter the number of the item you want to buy.");
-			//	}
-
-			//	int index = responseInt - 1;
-			//	Product thisProduct = Products[index];
-			//	return thisProduct;
-
-			//int responseInt = -1;
-			
-			//SELECT AN ITEM FOR PURCHASE
 			while (true)
 			{
 				try
 				{
-					Console.WriteLine("\nEnter the number of the item you want to buy.");
+					Console.WriteLine("Enter the number of the item you want to buy.");
 					string responseString = Console.ReadLine();
 					int responseInt = int.Parse(responseString);
 					int index = responseInt - 1;
